@@ -4,9 +4,21 @@ namespace MauiApp1MinhasCompras.Models
 {
     public class Produto
     {
+        string _descricao;
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Descricao { get; set; }
+        public string Descricao
+        {
+            get => _descricao;
+            set
+            {
+                if(value == null)
+                {
+                    throw new Exception("A descrição do produto é obrigatória, favor preencher");
+                }
+                _descricao = value;
+            }
+        }
         public double Quantidade { get; set; }
         public double Preco { get; set; }
         public double Total { get => Quantidade * Preco; }
