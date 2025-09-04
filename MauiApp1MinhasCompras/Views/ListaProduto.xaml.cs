@@ -18,7 +18,7 @@ public partial class ListaProduto : ContentPage
 	{
 		try
 		{
-			lista.Clear();
+			lista.Clear(); 
             List<Produto> tmp = await App.Db.GetAll();
 			tmp.ForEach(i => lista.Add(i));
 		}
@@ -27,7 +27,7 @@ public partial class ListaProduto : ContentPage
 			await DisplayAlert("Opssss!!!", ex.Message, "Ok!");
 		}
 	}
-    private void ToolbarItem_Clicked(object sender, EventArgs e)
+	private void ToolbarItem_Clicked(object sender, EventArgs e)
     {
 		try
 		{
@@ -70,7 +70,7 @@ public partial class ListaProduto : ContentPage
 			MenuItem selecionado = sender as MenuItem;
 			Produto p = selecionado.BindingContext as Produto;
 			bool confirm = await DisplayAlert(
-				"Tem Certeza?", $"Remover {p.Descricao}?", "Sim", "Não");
+				"Tem Certeza?", $"Quer remover o produto '''({p.Descricao})'''?", "Sim", "Não");
 			if (confirm)
 			{
 				await App.Db.Delete(p.Id);
